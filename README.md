@@ -1,13 +1,19 @@
-# Hockjay OS - v1.0.0
+# Hockjay OS - v1.0.0 (En desarrollo)
 > *Este es un proyecto muy especial para mi y un proyecto que le recomiendo a todo entusiaste tech que le gusta trabajar en Linux como ami. Crear una version personalizada de una distro de Linux ajustada a tu persona. Esto es un reto personal y me lo quiero tomar enserio. Voy a abarcar desde las configuraciones del sistema que uso, paquetes, apps, colores, fondos de pantallas, lock screen, terminal, entre otras cosas mas.*
 >
 > *Voy a dejar todo claro y explicado para que si quieres tomar alguna parte o configuracion de HockjayOS, lo puedas llevar a tu distro.*
 >
 >*"Linux es de todos"*
+
+---
+
 ## Objetivo
 > Un entorno Linux Mint Cinnamon enfocado en desarrollo y productividad (por ahora), con identidad visual propia y configuración reproducible.
 
+---
+
 ## Componentes
+
 
 ### Developer Edition
 
@@ -18,19 +24,15 @@
 - Docker
 - DBeaver
 
-#### Herramientas
-- ripgrep
-- fd
-- fzf
-- tree
-- jq
+---
 
 ### Visual Edition
-- Tema
 - Orchis Dark
 - Papirus Dark
 - JetBrains Mono
 - Wallpaper
+
+---
 
 ### Terminal Edition
 - Kitty
@@ -38,19 +40,10 @@
 
 ### Visual Code Edition
 
-configs/vscode/
-
  - settings.json
  - keybindings.json
  - extensions.txt
  - snippets/
-
-### NeoVim
- - 
- -
- -
- -
-
 
 
 ## Estructura
@@ -127,3 +120,12 @@ hockjay-os/
     │
     └── v1.0.0.md
 ```
+
+## 📄 Licencia
+
+Este proyecto se distribuye bajo la **Licencia MIT**. Su uso, copia, modificación
+y distribución son libres y gratuitos, con una única condición: **debe conservarse
+el aviso de copyright y la mención al autor** en todas las copias o partes
+sustanciales del software.
+
+Copyright (c) 2026 KMBMarcos. Consulta el archivo [`LICENSE`](./LICENSE) para el texto completo.
