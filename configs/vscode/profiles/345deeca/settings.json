@@ -1,0 +1,8 @@
+{
+    "files.autoSave": "afterDelay",
+    "editor.formatOnSave": true,
+    "workbench.iconTheme": "helium-icon-theme",
+    "workbench.colorTheme": "Aura Soft Dark",
+    "editor.fontFamily": "'JetBrains Mono', monospace",
+    "claudeCode.preferredLocation": "panel"
+}

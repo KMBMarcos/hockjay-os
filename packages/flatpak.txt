@@ -1,0 +1,6 @@
+# HockJayOS - Apps Flatpak (IDs de Flathub)
+# Uno por linea. Las lineas que empiezan con '#' y las vacias se ignoran.
+# Instalado por scripts/dev-tools.sh.
+
+# Cliente de bases de datos
+io.dbeaver.DBeaverCommunity

@@ -1,0 +1,4 @@
+anthropic.claude-code
+atommaterial.a-file-icon-vscode
+beardedbear.beardedtheme
+eamodio.gitlens

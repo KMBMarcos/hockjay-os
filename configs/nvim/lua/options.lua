@@ -1,0 +1,1 @@
+-- Este es el archivo de configuración de las opciones para Neovim. Aquí puedes establecer tus preferencias y personalizar tu entorno de desarrollo.

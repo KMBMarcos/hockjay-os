@@ -1,0 +1,1 @@
+-- Este es el archivo de configuración de los plugins para Neovim. Aquí puedes definir tus plugins favoritos y personalizar tu entorno de desarrollo.

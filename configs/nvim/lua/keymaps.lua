@@ -1,0 +1,1 @@
+-- Este es el archivo de configuración de los keymaps para Neovim. Aquí puedes definir tus atajos de teclado personalizados.

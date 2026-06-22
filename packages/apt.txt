@@ -1,0 +1,24 @@
+# HockJayOS - Paquetes Core (apt)
+# Uno por linea. Las lineas que empiezan con '#' y las vacias se ignoran.
+# Instalado por scripts/packages.sh via apt_install_list().
+
+# --- Base del sistema ---
+git
+curl
+wget
+build-essential
+
+# --- Entorno Python ---
+python3
+python3-pip
+python3-venv
+
+# --- Shell ---
+zsh
+
+# --- Utilidades de terminal ---
+ripgrep
+fd-find
+fzf
+tree
+jq

@@ -1,0 +1,10 @@
+{
+    "explorer.confirmDragAndDrop": false,
+    "workbench.iconTheme": "a-file-icon-vscode",
+    "explorer.confirmDelete": false,
+    "workbench.colorTheme": "Tokyo Night",
+    "files.autoSave": "afterDelay",
+    "editor.formatOnSave": true,
+    "gitlens.ai.model": "vscode",
+    "gitlens.ai.vscode.model": "copilot:oswe-vscode-modelD"
+}

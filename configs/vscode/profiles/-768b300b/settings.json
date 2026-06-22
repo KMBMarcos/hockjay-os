@@ -1,0 +1,5 @@
+{
+    "gitlens.ai.model": "gitkraken",
+    "gitlens.ai.gitkraken.model": "gemini:gemini-2.5-flash",
+    "workbench.colorTheme": "Tokyo Night"
+}
