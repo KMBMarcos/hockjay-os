@@ -50,8 +50,6 @@ cd HockJayOs
 ./scripts/install.sh
 ```
 
-> ⚠️ El proyecto está en fase de _scaffolding_: varios scripts de `scripts/` todavía son plantillas. Consulta [`docs/spec.md`](./docs/spec.md) para el diseño de referencia.
-
 ---
 
 ## Componentes
