@@ -8,9 +8,30 @@ source "$(dirname "${BASH_SOURCE[0]}")/lib.sh"
 source "$(dirname "${BASH_SOURCE[0]}")/packages.sh"   # provee install_core()
 
 install_icons_and_font() {
-  info "Instalando iconos Papirus y fuente JetBrains Mono..."
-  sudo apt-get install -y papirus-icon-theme fonts-jetbrains-mono
-  ok "Iconos y fuente instalados."
+  info "Instalando iconos Papirus..."
+  sudo apt-get install -y papirus-icon-theme
+  ok "Iconos instalados."
+}
+
+# install_nerd_font - Hack Nerd Font (fuente estandar del proyecto: kitty, gsettings).
+# No esta en apt; se descarga del release de ryanoasis/nerd-fonts.
+install_nerd_font() {
+  local font_dir="$HOME/.local/share/fonts/HackNerdFont"
+  if [[ -d "$font_dir" ]] || fc-list 2>/dev/null | grep -qi "Hack Nerd Font"; then
+    ok "Hack Nerd Font ya instalada."; return 0
+  fi
+  info "Instalando Hack Nerd Font..."
+  local tmp; tmp="$(mktemp -d)"
+  if curl -fsSL -o "$tmp/Hack.zip" \
+       https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip; then
+    mkdir -p "$font_dir"
+    unzip -o -q "$tmp/Hack.zip" -d "$font_dir"
+    fc-cache -f "$font_dir" >/dev/null 2>&1 || true
+    ok "Hack Nerd Font instalada."
+  else
+    warn "No se pudo descargar Hack Nerd Font; omitiendo (kitty usara una fuente de respaldo)."
+  fi
+  rm -rf "$tmp"
 }
 
 install_orchis_theme() {
@@ -38,7 +59,7 @@ apply_appearance() {
   gsettings set org.cinnamon.desktop.interface gtk-theme   "Orchis-Dark"   || true
   gsettings set org.cinnamon.desktop.wm.preferences theme  "Orchis-Dark"   || true
   gsettings set org.cinnamon.desktop.interface icon-theme  "Papirus-Dark"  || true
-  gsettings set org.cinnamon.desktop.interface font-name   "JetBrains Mono 10" || true
+  gsettings set org.cinnamon.desktop.interface font-name   "Hack Nerd Font 10" || true
   ok "Apariencia aplicada."
 }
 
@@ -68,6 +89,7 @@ install_visual() {
   install_core          # cada tier construye sobre Core
   info "Instalando identidad visual..."
   install_icons_and_font
+  install_nerd_font
   install_orchis_theme
   apply_appearance
   deploy_terminal_configs

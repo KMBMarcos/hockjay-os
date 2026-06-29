@@ -1,4 +1,4 @@
-# Hockjay OS — v1.0.0 Cachorro Bombay (En desarrollo)
+# Hockjay OS — v1.1.0 Cachorro Bombay (En desarrollo)
 
 > *Este es un proyecto muy especial para mi y un proyecto que le recomiendo a todo entusiaste tech que le gusta trabajar en Linux como ami. Crear una version personalizada de una distro de Linux ajustada a tu persona. Esto es un reto personal y me lo quiero tomar enserio. Voy a abarcar desde las configuraciones del sistema que uso, paquetes, apps, colores, fondos de pantallas, lock screen, terminal, entre otras cosas mas.*
 >

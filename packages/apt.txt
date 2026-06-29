@@ -22,3 +22,5 @@ fd-find
 fzf
 tree
 jq
+bat
+btop

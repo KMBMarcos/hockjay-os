@@ -48,10 +48,6 @@
     },
     "disk",
     {
-      "type": "battery",
-      "temp": true
-    },
-    {
       "type": "publicip"
     },
     {

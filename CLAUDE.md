@@ -12,28 +12,38 @@ The README is written in Spanish; most docs/specs are in English. The maintainer
 
 ## Current state — read before editing
 
-The project is in an early scaffolding phase. **Most files under `scripts/` and several config files contain only a one-line comment describing their intended purpose, not real implementation.** For example `scripts/install.sh`, `scripts/packages.sh`, `scripts/themes.sh`, `scripts/dev-tools.sh`, and `scripts/backup.sh` are placeholder stubs. Treat the comment as the spec for what that file should eventually do; don't assume working code exists.
+The install engine is **implemented and functional** (no longer stubs): `scripts/lib.sh` (shared helpers), `scripts/install.sh` (interactive menu), `scripts/packages.sh` (Core), `scripts/dev-tools.sh` (Developer), `scripts/themes.sh` (Visual), and `scripts/backup.sh` all contain real logic. `packages/apt.txt` and `packages/flatpak.txt` are populated manifests. Implementation notes live in `docs/informe-scripts-instalacion.md`.
 
-The `docs/spec.md` file is the authoritative design document — when implementing a stub, align it with the architecture, modularity, and installation philosophy described there.
+**Still incomplete / known gaps:**
+- `configs/nvim/*.lua` (`init.lua`, `lua/{keymaps,options,plugins}.lua`) are empty — the scripts deploy them anyway, so they'd link empty files.
+- `configs/git/` has no `.gitconfig`; `packages.sh` references it but `backup_and_link` skips a missing source gracefully (warns only).
+- The **Productivity** tier (Obsidian, Firefox, Bitwarden) is not implemented; `install.sh` offers only Core/Developer/Visual/Full.
+- The scripts have **never been run end-to-end on a real Mint install** — only syntax-checked (`bash -n`) and tested in isolation. Recommend a VM/container before a real machine.
+
+The `docs/spec.md` file is the authoritative design document — align new work with the architecture, modularity, and installation philosophy described there.
 
 ## Intended architecture (the modular install model)
 
-The design centers on **independently installable modules** so a user can install only what they need. `scripts/install.sh` is meant to be the interactive entry point offering:
+The design centers on **independently installable modules** so a user can install only what they need. `scripts/install.sh` is the interactive entry point. It currently offers:
 
 ```
-[1] Core        → git, curl, wget, build tools, Python env, terminal utils   (packages.sh)
-[2] Developer   → Docker, Python tooling, .NET SDK, VS Code, Neovim, DB tools (dev-tools.sh)
-[3] Visual      → Orchis Dark theme, Papirus Dark icons, JetBrains Mono, wallpaper, Kitty, Fastfetch (themes.sh)
-[4] Productivity → Obsidian, Firefox, Bitwarden docs
-[5] Full
+[1] Core      → apt.txt base pkgs + Zsh ecosystem (oh-my-zsh, powerlevel10k,
+                plugins, eza) + zsh/git dotfiles                          (packages.sh)
+[2] Developer → Core + Docker, .NET SDK, DBeaver (flatpak), Neovim, VS Code (dev-tools.sh)
+[3] Visual    → Core + Orchis Dark, Papirus, Hack Nerd Font, gsettings,
+                Kitty, Fastfetch, wallpaper                               (themes.sh)
+[4] Full      → Developer + Visual
+[5] Salir
 ```
 
-Each tier builds on Core (`dev-tools.sh` = Core + dev tools; `themes.sh` = Core + themes). Keep this layering when implementing scripts.
+Each tier builds on Core: `dev-tools.sh` and `themes.sh` both `source packages.sh` and call `install_core()` first. Keep this layering. Shared helpers (logging, `backup_and_link`, `apt_install_list`, `is_installed`, `confirm`, `require_apt`, `REPO_DIR`) live in `scripts/lib.sh` — reuse them rather than reinventing.
+
+**The standard coding/terminal font is Hack Nerd Font** (kitty `font_family`, gsettings `font-name`); `themes.sh` downloads it from `ryanoasis/nerd-fonts`. The Productivity tier from `docs/spec.md` is not wired into the menu yet.
 
 ## Repository layout
 
-- `scripts/` — installation/automation scripts (the actuators; currently stubs)
-- `configs/` — version-controlled dotfiles, organized one directory per tool: `nvim/` (Lua config under `lua/`), `kitty/`, `fastfetch/` (config + `logo/hockjay.ansi`), `vscode/` (settings + `extentions.txt` + exported `profiles/`), `bash/`, `zsh/`, `git/` (several still empty)
+- `scripts/` — installation/automation scripts (the actuators): `lib.sh` (shared helpers, sourced by the rest), `install.sh`, `packages.sh`, `dev-tools.sh`, `themes.sh`, `backup.sh`
+- `configs/` — version-controlled dotfiles, one directory per tool: `nvim/` (Lua config under `lua/`, still empty), `kitty/`, `fastfetch/` (config + `logo/hockjay.ansi`), `vscode/` (settings + `extensions.txt` + exported `profiles/`), `zsh/` (`.zshrc`), `bash/` and `git/` (empty)
 - `docs/` — `spec.md` (design authority), `software-stack.md`, `update-guide.md`
 - `packages/`, `wallpapers/`, `backup/` — asset/data directories
 
@@ -44,3 +54,4 @@ Config files use paths as they'll be installed to the target system (e.g. `fastf
 - **Versioning:** semantic `MAJOR.MINOR.PATCH`; releases are named editions (current: `v1.0.0 Panthera Edition`).
 - **Update workflow** (`docs/update-guide.md`): add a `releases/vX.Y.Z.md`, run `./scripts/backup.sh` *before* modifying anything, update `CHANGELOG.md` (Added/Changed/Fixed), then commit.
 - **VS Code:** `configs/vscode/profiles/` holds exported profiles (including binary `state.vscdb` SQLite files) — these are generated exports, not hand-edited.
+- **Changes** Verify before processing a PR or commit, and record changes in CHANGELOG.md following the correct convention.

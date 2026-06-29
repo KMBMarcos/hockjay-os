@@ -1,0 +1,8 @@
+# HockJayOS - artefactos que no deben versionarse
+
+# Backups generados por oh-my-zsh / scripts/backup.sh
+.zshrc.pre-oh-my-zsh
+backup/backup-*/
+
+# Zsh compilados
+*.zwc

@@ -27,3 +27,12 @@ y el proyecto sigue el versionado [SemVer](https://semver.org/lang/es/) (`MAJOR.
 - Esqueleto de `configs/` (nvim, kitty, fastfetch, vscode, zsh, git).
 - Documentación de diseño en `docs/` (`spec.md`, `software-stack.md`, `update-guide.md`).
 - `README.md` inicial en español.
+
+## [1.1.0] - 2026-6-29 — Panthera Edition
+
+### Added
+- Instalacion de zsh en `packages.sh` con mi configuracion.
+- Se agrego la configuracion de `zsh/`.
+- Se modifico el `fastefetch/` a como esta actualmente.
+- Se agrego la configuracion de `kitty/`.
+- Se agrego la instalacion de Hack Nerd Font en `themes.sh` para la terminal.
